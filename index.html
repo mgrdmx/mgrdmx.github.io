@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎访问Dream引导页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            color: #fff;
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            text-align: center;
+        }
+        
+        .header {
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #fff, #a8edea);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(to right, #1a2a6c, #b21f1f, #1a2a6c);
+            border-radius: 2px;
+        }
+        
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            width: 300px;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: cardSlide 0.6s ease-out;
+            animation-fill-mode: backwards;
+        }
+        
+        .card:nth-child(1) { animation-delay: 0.2s; }
+        .card:nth-child(2) { animation-delay: 0.4s; }
+        .card:nth-child(3) { animation-delay: 0.6s; }
+        
+        .card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+        
+        .card:hover::before {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .card i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+        
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+        
+        .card p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+            flex-grow: 1;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(45deg, #1a2a6c, #b21f1f);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #b21f1f, #1a2a6c);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .quote-container {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .quote-container::before {
+            content: """;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            opacity: 0.1;
+            font-family: Georgia, serif;
+        }
+        
+        .quote {
+            font-size: 1.4rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .quote-author {
+            font-size: 1.1rem;
+            text-align: right;
+            opacity: 0.7;
+        }
+        
+        .refresh-btn {
+            margin-top: 15px;
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes cardSlide {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .header p {
+                font-size: 1rem;
+            }
+            
+            .card {
+                width: 100%;
+                max-width: 350px;
+            }
+            
+            .quote {
+                font-size: 1.2rem;
+            }
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>欢迎访问Dream引导页</h1>
+            <p>这里是通往Dream世界的门户，探索更多精彩内容</p>
+        </div>
+        
+        <div class="cards">
+            <div class="card">
+                <i class="fas fa-home"></i>
+                <h3>个人主页</h3>
+                <p>访问Dream的个人空间，了解我的故事、项目和联系方式</p>
+                <a href="https://www.6666666.icu" class="btn" target="_blank">访问主页</a>
+            </div>
+            
+            <div class="card">
+                <i class="fas fa-code"></i>
+                <h3>DreamPay新平台</h3>
+                <p>体验全新升级的DreamPay支付平台，更安全、更快捷</p>
+                <a href="https://code.6666666.icu" class="btn" target="_blank">访问新平台</a>
+            </div>
+            
+            <div class="card">
+                <i class="fas fa-wallet"></i>
+                <h3>DreamPay旧平台</h3>
+                <p>访问DreamPay经典版本，继续您的支付体验</p>
+                <a href="https://pay.6666666.icu" class="btn" target="_blank">访问旧平台</a>
+            </div>
+        </div>
+        
+        <div class="quote-container">
+            <div class="quote" id="hitokoto">
+                正在加载一言...
+            </div>
+            <button class="btn refresh-btn" id="refresh-quote">
+                换一句
+            </button>
+        </div>
+        
+        <div class="footer">
+            <p>© 2023 Dream引导页 | 用心创造每一行代码</p>
+        </div>
+    </div>
+
+    <script>
+        // 随机一言API
+        const hitokoto = document.getElementById('hitokoto');
+        const refreshBtn = document.getElementById('refresh-quote');
+        
+        // 获取一言
+        function fetchHitokoto() {
+            hitokoto.innerHTML = '<span>正在加载中...</span><div class="loading"></div>';
+            
+            fetch('https://v1.hitokoto.cn')
+                .then(response => response.json())
+                .then(data => {
+                    hitokoto.innerHTML = `"${data.hitokoto}"`;
+                    if (data.from) {
+                        hitokoto.innerHTML += `<div class="quote-author">—— ${data.from}</div>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('获取一言失败:', error);
+                    hitokoto.innerHTML = '"生活不止眼前的苟且，还有诗和远方的田野"<div class="quote-author">—— 高晓松</div>';
+                });
+        }
+        
+        // 页面加载时获取一言
+        document.addEventListener('DOMContentLoaded', fetchHitokoto);
+        
+        // 点击按钮刷新一言
+        refreshBtn.addEventListener('click', fetchHitokoto);
+        
+        // 卡片悬停效果增强
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const angleY = (x - centerX) / 8;
+                const angleX = (centerY - y) / 8;
+                
+                card.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.05)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = '';
+            });
+        });
+    </script>
+</body>
+</html>
